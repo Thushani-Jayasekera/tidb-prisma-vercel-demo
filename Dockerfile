@@ -5,7 +5,7 @@ RUN npm install -g pnpm
 WORKDIR /app        
 COPY . .
 
-ENV npm_config_cache=/app
+RUN apk add --update --no-cache openssl1.1-compat
 
 RUN if [ -f "./package-lock.json" ]; then npm install; \
     elif [ -f "./yarn.lock" ]; then yarn; \           
