@@ -35,7 +35,7 @@ model Author {
 }
 
 model BookAuthor {
-  book     Book   @relation(fields: [bookId], references: [id])
+  book     BooksWork   @relation(fields: [bookId], references: [id])
   bookId   BigInt @map("book_id")
   author   Author @relation(fields: [authorId], references: [id])
   authorId BigInt @map("author_id")
@@ -44,7 +44,7 @@ model BookAuthor {
 	@@map("book_authors")
 }
 
-model Book {
+model BooksWork {
   id           BigInt     @id
   title        String     @db.VarChar(100)
   type         BookType
@@ -59,7 +59,7 @@ model Book {
 
 model Order {
   id          BigInt   @id @default(autoincrement())
-  book        Book     @relation(fields: [bookId], references: [id])
+  book        BooksWork     @relation(fields: [bookId], references: [id])
   bookId      BigInt   @map("book_id")
   user        User     @relation(fields: [userId], references: [id])
   userId      BigInt   @map("user_id")
@@ -71,7 +71,7 @@ model Order {
 }
 
 model Rating {
-  book    Book     @relation(fields: [bookId], references: [id])
+  book    BooksWork     @relation(fields: [bookId], references: [id])
   bookId  BigInt   @map("book_id")
   user    User     @relation(fields: [userId], references: [id])
   userId  BigInt   @map("user_id")
